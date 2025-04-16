@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>العرض التقديمي الخاص بطلاب ثانوية الرازي</title>
+    <title>الحاسوب وبرمجياته</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap');
@@ -116,102 +116,20 @@
             position: relative;
             width: 100%;
             max-width: 800px;
-            min-height: 450px;
+            text-align: center;
             background-color: white;
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             overflow: hidden;
             transition: all 0.3s ease;
+            padding: 20px;
         }
         
-        .preview-frame {
+        .presentation-frame {
             width: 100%;
-            height: 450px;
-            border: none;
-        }
-        
-        .presentation-controls {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 15px;
-            margin-top: 20px;
-            padding: 15px;
-            background-color: rgba(236, 240, 241, 0.7);
-            border-radius: 50px;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-        }
-        
-        .control-btn {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background-color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            font-size: 18px;
-            color: var(--dark-color);
-            border: none;
-            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
-            transition: all 0.2s ease;
-        }
-        
-        .control-btn:hover {
-            background-color: var(--primary-color);
-            color: white;
-            transform: scale(1.1);
-        }
-        
-        .control-btn.play {
-            background-color: var(--accent-color);
-            color: white;
-            width: 60px;
-            height: 60px;
-            font-size: 20px;
-        }
-        
-        .control-btn.play:hover {
-            background-color: #c0392b;
-        }
-        
-        .slide-indicator {
-            font-size: 16px;
-            font-weight: 500;
-            color: var(--dark-color);
-            margin: 0 15px;
-        }
-        
-        .loading-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(255, 255, 255, 0.9);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            z-index: 100;
-            transition: opacity 0.5s ease;
-        }
-        
-        .spinner {
-            width: 50px;
-            height: 50px;
-            border: 5px solid rgba(52, 152, 219, 0.2);
-            border-radius: 50%;
-            border-top-color: var(--primary-color);
-            animation: spin 1s linear infinite;
-            margin-bottom: 20px;
-        }
-        
-        @keyframes spin {
-            to {
-                transform: rotate(360deg);
-            }
+            max-width: 800px;
+            margin: 0 auto;
+            display: block;
         }
         
         .features {
@@ -263,6 +181,7 @@
             color: var(--dark-color);
             font-size: 14px;
             opacity: 0.8;
+            padding-bottom: 20px;
         }
         
         .notification {
@@ -297,28 +216,9 @@
                 font-size: 24px;
             }
             
-            .preview-container {
-                min-height: 300px;
-            }
-            
-            .preview-frame {
-                height: 300px;
-            }
-            
-            .presentation-controls {
-                padding: 10px;
-                flex-wrap: wrap;
-            }
-            
-            .control-btn {
-                width: 40px;
-                height: 40px;
-                font-size: 16px;
-            }
-            
-            .control-btn.play {
-                width: 50px;
-                height: 50px;
+            .presentation-frame {
+                width: 100%;
+                height: auto;
             }
         }
     </style>
@@ -332,49 +232,14 @@
         
         <div class="main-content">
             <div class="options">
-                <button class="btn view-btn" id="view-btn">
-                    <i class="fas fa-eye"></i>
-                    عرض العرض التقديمي
-                </button>
-                
                 <a href="computer.pptx" class="btn download" id="download-btn">
                     <i class="fas fa-download"></i>
                     تحميل الملف
                 </a>
             </div>
             
-            <div class="preview-container" id="preview-container">
-                <div class="loading-overlay" id="loading-overlay">
-                    <div class="spinner"></div>
-                    <p>جاري تحميل العرض التقديمي...</p>
-                </div>
-                <div id="presentation-placeholder">
-                    <img src="/api/placeholder/800/450" alt="صورة توضيحية للعرض التقديمي" style="width: 100%; height: 100%; object-fit: cover; border-radius: 10px;">
-                    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; background-color: rgba(255,255,255,0.8); padding: 20px; border-radius: 10px;">
-                        <i class="fas fa-presentation" style="font-size: 50px; color: var(--primary-color);"></i>
-                        <h3 style="margin-top: 10px;">انقر على "عرض العرض التقديمي" للبدء</h3>
-                    </div>
-                </div>
-                <iframe id="preview-frame" class="preview-frame" style="display: none;"></iframe>
-            </div>
-            
-            <div class="presentation-controls" id="presentation-controls" style="display: none;">
-                <button class="control-btn" id="first-slide">
-                    <i class="fas fa-step-backward"></i>
-                </button>
-                <button class="control-btn" id="prev-slide">
-                    <i class="fas fa-chevron-right"></i>
-                </button>
-                <button class="control-btn play" id="play-pause">
-                    <i class="fas fa-play"></i>
-                </button>
-                <button class="control-btn" id="next-slide">
-                    <i class="fas fa-chevron-left"></i>
-                </button>
-                <button class="control-btn" id="last-slide">
-                    <i class="fas fa-step-forward"></i>
-                </button>
-                <div class="slide-indicator">الشريحة <span id="current-slide">1</span> من <span id="total-slides">1</span></div>
+            <div class="preview-container">
+                <iframe src="https://1drv.ms/p/c/c395b593d390b939/IQRgxqUocuswTp0tAFa34ejJAZIWiyQM25vV05-IePGN9lA?em=2&amp;wdAr=1.7777777777777777" width="100%" height="450px" frameborder="0" class="presentation-frame">This is an embedded <a target="_blank" href="https://office.com">Microsoft Office</a> presentation, powered by <a target="_blank" href="https://office.com/webapps">Office</a>.</iframe>
             </div>
             
             <div class="features">
@@ -415,25 +280,7 @@
     </div>
 
     <script>
-        let currentSlide = 1;
-        let totalSlides = 1;
-        let isPlaying = false;
-        let slideInterval;
-        
-        const viewBtn = document.getElementById('view-btn');
         const downloadBtn = document.getElementById('download-btn');
-        const previewContainer = document.getElementById('preview-container');
-        const previewFrame = document.getElementById('preview-frame');
-        const loadingOverlay = document.getElementById('loading-overlay');
-        const presentationPlaceholder = document.getElementById('presentation-placeholder');
-        const presentationControls = document.getElementById('presentation-controls');
-        const firstSlideBtn = document.getElementById('first-slide');
-        const prevSlideBtn = document.getElementById('prev-slide');
-        const playPauseBtn = document.getElementById('play-pause');
-        const nextSlideBtn = document.getElementById('next-slide');
-        const lastSlideBtn = document.getElementById('last-slide');
-        const currentSlideEl = document.getElementById('current-slide');
-        const totalSlidesEl = document.getElementById('total-slides');
         const notification = document.getElementById('notification');
         const notificationText = document.getElementById('notification-text');
         
@@ -447,122 +294,13 @@
             }, 3000);
         }
         
-        viewBtn.addEventListener('click', () => {
-            loadPresentation();
-        });
-        
-        function loadPresentation() {
-            loadingOverlay.style.display = 'flex';
-            presentationPlaceholder.style.display = 'none';
-            previewFrame.style.display = 'none';
-            
-            setTimeout(() => {
-                //العرض
-                
-                loadingOverlay.style.display = 'none';
-                previewFrame.style.display = 'block';
-                previewFrame.src = "/api/placeholder/800/450";
-                presentationControls.style.display = 'flex';
-                totalSlides = 10;
-                currentSlide = 1;
-                updateSlideIndicator();
-                
-                showNotification('تم تحميل العرض التقديمي بنجاح');
-            }, 2000);
-        }
-        function updateSlideIndicator() {
-            currentSlideEl.textContent = currentSlide;
-            totalSlidesEl.textContent = totalSlides;
-        }
-        
-        firstSlideBtn.addEventListener('click', () => {
-            goToSlide(1);
-        });
-        
-        prevSlideBtn.addEventListener('click', () => {
-            goToSlide(Math.max(1, currentSlide - 1));
-        });
-        
-        nextSlideBtn.addEventListener('click', () => {
-            goToSlide(Math.min(totalSlides, currentSlide + 1));
-        });
-        
-        lastSlideBtn.addEventListener('click', () => {
-            goToSlide(totalSlides);
-        });
-        
-        playPauseBtn.addEventListener('click', togglePlayPause);
-        
-        function goToSlide(slideNumber) {
-            // الانتقال
-            
-            currentSlide = slideNumber;
-            updateSlideIndicator();
-            
-            previewFrame.style.opacity = '0.7';
-            setTimeout(() => {
-                previewFrame.style.opacity = '1';
-            }, 300);
-            
-            // إيقاف العرض التلقائي إذا كان قيد التشغيل
-            if (isPlaying) {
-                togglePlayPause();
-            }
-        }
-        
-        function togglePlayPause() {
-            isPlaying = !isPlaying;
-            
-            if (isPlaying) {
-                // بدء العرض التلقائي
-                playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
-                slideInterval = setInterval(() => {
-                    if (currentSlide >= totalSlides) {
-                        // إيقاف العرض عند الوصول إلى آخر شريحة
-                        togglePlayPause();
-                        return;
-                    }
-                    goToSlide(currentSlide + 1);
-                }, 3000); // تغيير الشريحة كل 3 ثوان
-            } else {
-                // إيقاف العرض التلقائي
-                playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
-                clearInterval(slideInterval);
-            }
-        }
-        
-        // تحميل الملف
         downloadBtn.addEventListener('click', (e) => {
-            // نسمح بالسلوك الافتراضي للتحميل
+            
             showNotification('جاري تحميل العرض التقديمي...');
         });
         
-        // إضافة استجابة لحدث تحميل الصفحة
         window.addEventListener('load', () => {
-            // يمكن إضافة منطق إضافي هنا إذا لزم الأمر
-        });
-        
-        // إضافة التحكم بلوحة المفاتيح
-        document.addEventListener('keydown', (e) => {
-            if (presentationControls.style.display === 'flex') {
-                switch (e.key) {
-                    case 'ArrowLeft':
-                        nextSlideBtn.click();
-                        break;
-                    case 'ArrowRight':
-                        prevSlideBtn.click();
-                        break;
-                    case ' ':
-                        togglePlayPause();
-                        break;
-                    case 'Home':
-                        firstSlideBtn.click();
-                        break;
-                    case 'End':
-                        lastSlideBtn.click();
-                        break;
-                }
-            }
+            
         });
     </script>
 </body>
