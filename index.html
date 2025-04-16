@@ -212,8 +212,10 @@
             var iframe = document.querySelector('.presentation-frame');
             var containerWidth = container.offsetWidth;
             var containerHeight = container.offsetHeight;
-            iframe.style.width = containerWidth + 'px';
-            iframe.style.height = containerHeight + 'px';
+            //iframe.style.width = containerWidth + 'px';
+            //iframe.style.height = containerHeight + 'px';
+            iframe.style.width = 100 + 'px';
+            iframe.style.height = 100 + 'px';
         }     window.addEventListener('load', adjustIframeSize); window.addEventListener('resize', adjustIframeSize);
     </script>
 </div>  
