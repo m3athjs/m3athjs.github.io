@@ -200,13 +200,23 @@
                 </a>  
             </div>  
             <div class="preview-container">  
-                <iframe  
-                    src="https://1drv.ms/p/c/c395b593d390b939/IQRgxqUocuswTp0tAFa34ejJAZIWiyQM25vV05-IePGN9lA?em=2&amp;wdAr=1.7777777777777777"  
-                    class="presentation-frame"  
-                    allowfullscreen  
-                    loading="lazy">  
-                </iframe>  
-            </div>  
+    <iframe  
+        src="https://1drv.ms/p/c/c395b593d390b939/IQRgxqUocuswTp0tAFa34ejJAZIWiyQM25vV05-IePGN9lA?em=2&amp;wdAr=1.7777777777777777"  
+        class="presentation-frame"  
+        allowfullscreen  
+        loading="lazy">  
+    </iframe>
+    <script>
+        function adjustIframeSize() {
+            var container = document.querySelector('.preview-container');
+            var iframe = document.querySelector('.presentation-frame');
+            var containerWidth = container.offsetWidth;
+            var containerHeight = container.offsetHeight;
+            iframe.style.width = containerWidth + 'px';
+            iframe.style.height = containerHeight + 'px';
+        }     window.addEventListener('load', adjustIframeSize); window.addEventListener('resize', adjustIframeSize);
+    </script>
+</div>  
             <div class="features">  
                 <div class="feature">  
                     <div class="feature-icon"><i class="fas fa-laptop"></i></div>  
